@@ -78,11 +78,9 @@ class RedisFeatureDriver implements CanListStoredFeatures, Driver
         if (is_string($value)) {
             return ! ($value == '');
         }
-        if (is_bool($value)) {
-            return $value;
-        }
 
         return true;
+
     }
 
     /**
