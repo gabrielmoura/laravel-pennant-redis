@@ -10,12 +10,20 @@
 ## Introduction
 
 A Redis Driver for the [Laravel Pennant](https://github.com/laravel/pennant).
+Now compatible with Laravel 11 and igbinary.
+
+## Compatibility
+- Laravel 10
+- Laravel 11
+- IgBinary
 
 ## Objective
 
-Considering the necessity of employing storage other than arrays or databases, I took the liberty of crafting a driver to provide native support for Redis.
+Considering the necessity of employing storage other than arrays or databases, I took the liberty of crafting a driver
+to provide native support for Redis.
 
-The advantage lies in not being confined to a single Laravel instance or the database, which already contends with its challenges of overload.
+The advantage lies in not being confined to a single Laravel instance or the database, which already contends with its
+challenges of overload.
 
 This minor alteration is a replica of the database driver, with adaptations for writing and reading Hash in Redis.
 
