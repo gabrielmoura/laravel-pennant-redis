@@ -10,9 +10,11 @@
 ## Introduction
 
 A Redis Driver for the [Laravel Pennant](https://github.com/laravel/pennant).
+
 Now compatible with Laravel 11 and igbinary.
 
 ## Compatibility
+
 - Laravel 10
 - Laravel 11
 - IgBinary
