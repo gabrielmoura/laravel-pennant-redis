@@ -11,12 +11,13 @@
     ],
     "require": {
         "php": "^8.1",
-        "laravel/pennant": "^1.5",
-        "illuminate/redis": "^v10"
+        "laravel/pennant": ">=1.5",
+        "illuminate/redis": ">=v10"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",
-        "orchestra/testbench": "^8.0"
+        "orchestra/testbench": "^8.0",
+        "laravel/pint": "^1.17"
     },
     "autoload": {
         "psr-4": {
@@ -26,7 +27,7 @@
     "authors": [
         {
             "name": "Gabriel Moura",
-            "email": "gmoura96@icloud.com"
+            "email": "gmouradev96@gmail.com"
         }
     ],
     "extra": {
