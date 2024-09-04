@@ -152,10 +152,12 @@ class RedisFeatureDriver implements CanListStoredFeatures, Driver
      */
     public function purge(?array $features = null): void
     {
-        $featuresToDelete = $features ?? $this->getAllStoredFeatures();
-
-        foreach ($featuresToDelete as $feature) {
-            $this->redis->command('DEL', ["$this->prefix:$feature"]);
+        if ($features === null) {
+            $this->redis->eval(LuaScript::Purge, 1, "$this->prefix:*");
+        } else {
+            foreach ($features as $feature) {
+                $this->redis->command('DEL', ["$this->prefix:$feature"]);
+            }
         }
     }
 
@@ -179,10 +181,9 @@ class RedisFeatureDriver implements CanListStoredFeatures, Driver
      */
     protected function getAllStoredFeatures(): array
     {
-        return array_map(
-            fn ($key) => substr(strrchr($key, ':'), 1),
-            $this->redis->command('KEYS', ["$this->prefix:*"])
-        );
+        $keys = $this->redis->eval(LuaScript::AllStoredFeatures, 1, "$this->prefix:*");
+
+        return array_map(fn ($key) => substr(strrchr($key, ':'), 1), $keys);
     }
 
     public function stored(): array
