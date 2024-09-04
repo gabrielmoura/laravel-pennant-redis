@@ -155,9 +155,11 @@ class RedisFeatureDriver implements CanListStoredFeatures, Driver
         if ($features === null) {
             $this->redis->eval(LuaScript::Purge, 1, "$this->prefix:*");
         } else {
-            foreach ($features as $feature) {
-                $this->redis->command('DEL', ["$this->prefix:$feature"]);
-            }
+            $this->redis->pipeline(function ($redis) use ($features) {
+                foreach ($features as $feature) {
+                    $redis->command('DEL', ["$this->prefix:$feature"]);
+                }
+            });
         }
     }
 
